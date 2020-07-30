@@ -34,8 +34,13 @@ namespace JETech.Leasing.Web.Data.Entities
 
         public string Address { get; set; }
 
+        [Display(Name = "Owner Name")]
         public string FullName => $"{FirstName} {LastName}";
 
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
+
+        public ICollection<Property> Properties { get; set; }
+
+        public ICollection<Contract> Contracts { get; set; }
     }
 }
