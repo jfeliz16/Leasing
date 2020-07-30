@@ -10,29 +10,29 @@ namespace JETech.Leasing.Web.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(30)]
+        [MaxLength(30, ErrorMessage = "This field {0} can not have more than {1} characters.")]
+        [Required(ErrorMessage = "This field is mandatory.")]       
         public string Document { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage = "This field is mandatory.")]
+        [MaxLength(50, ErrorMessage = "This field {0} can not have more than {1} characters.")]
         [Display(Name = "Firts Name")]
         public string FirstName { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage ="This field is mandatory.")]
+        [MaxLength(50,ErrorMessage ="This field {0} can not have more than {1} characters.")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(30, ErrorMessage = "This field {0} can not have more than {1} characters.")]
         [Display(Name = "Fixed Phone")]
         public string FixedPhone { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(30, ErrorMessage = "This field {0} can not have more than {1} characters.")]
         [Display(Name = "Cell Phone")]
         public string CellPhone { get; set; }
 
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
 
