@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JETech.Leasing.Common", "JETech.Leasing.Common\JETech.Leasing.Common.csproj", "{62F931D0-ED57-4A49-91CF-7E7E9087E492}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JETech.Leasing.Web", "JETech.Leasing.Web\JETech.Leasing.Web.csproj", "{B5277456-C42D-42B9-8468-7EF8C735C248}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62F931D0-ED57-4A49-91CF-7E7E9087E492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F931D0-ED57-4A49-91CF-7E7E9087E492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F931D0-ED57-4A49-91CF-7E7E9087E492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F931D0-ED57-4A49-91CF-7E7E9087E492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5277456-C42D-42B9-8468-7EF8C735C248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5277456-C42D-42B9-8468-7EF8C735C248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5277456-C42D-42B9-8468-7EF8C735C248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5277456-C42D-42B9-8468-7EF8C735C248}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A90DC00C-3F8A-4BAD-B101-93E98EF0089B}
+	EndGlobalSection
+EndGlobal
