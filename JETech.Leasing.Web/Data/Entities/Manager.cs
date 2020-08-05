@@ -1,4 +1,4 @@
-﻿namespace MyLeasing.Web.Data.Entities
+﻿namespace JETech.Leasing.Web.Data.Entities
 {
     public class Manager
     {
