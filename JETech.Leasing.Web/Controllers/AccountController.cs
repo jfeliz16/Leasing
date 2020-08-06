@@ -89,10 +89,10 @@ namespace JETech.Leasing.Web.Controllers
             if (ModelState.IsValid)
             {
                 var role = "Owner";
-                if (model.RoleId == 1)
-                {
-                    role = "Lessee";
-                }
+                //if (model.RoleId == 1)
+                //{
+                //    role = "Lessee";
+                //}
 
                 //var user = await _userHelper.AddUser(model, role);
                 //if (user == null)
