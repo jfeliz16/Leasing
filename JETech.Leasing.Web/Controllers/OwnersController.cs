@@ -38,6 +38,12 @@ namespace JETech.Leasing.Web.Controllers
             }
 
             var owner = await _dataContext.Owners
+                .Include(o => o.User)
+                .Include(o => o.Properties)
+                .ThenInclude(p => p.PropertyImages)
+                .Include(o => o.Contracts)
+                .ThenInclude(l => l.Lessee)
+                .ThenInclude(u => u.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (owner == null)
             {

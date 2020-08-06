@@ -4,15 +4,123 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Owner</h1>
 
 <div>
-    <h4>Owner</h4>
+    <h4>Detail</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Document)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Document)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.LastName)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.PhoneNumber)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Address)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="AddProperty" asp-route-id="@Model.Id" class="btn btn-primary">Property Types</a>
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
 </div>
+<br />
+@if (Model.Properties.Count == 0)
+{
+    <h1>Not properties found</h1>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Neighborhood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().SquareMeters)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Rooms)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().IsAvailable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().PropertyImages)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Contracts)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Properties)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Neighborhood)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SquareMeters)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rooms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAvailable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyImages.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contracts.Count)
+                </td>
+                <td>
+                    <a asp-action="EditProperties" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="DetailsProperties" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                    <a asp-action="DeleteProperties" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
