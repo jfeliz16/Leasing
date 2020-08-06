@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using JETech.Leasing.Web.Helper;
+using JETech.Leasing.Web.Helpers;
 using JETech.Leasing.Web.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using JETech.Leasing.Web.Data.Entities;
-using JETech.Leasing.Web.Helper;
+using JETech.Leasing.Web.Helpers;
 
 namespace JETech.Leasing.Web.Data
 {
