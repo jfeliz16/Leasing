@@ -52,7 +52,7 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="AddProperty" asp-route-id="@Model.Id" class="btn btn-primary">Property Types</a>
+    <a asp-action="AddProperty" asp-route-id="@Model.Id" class="btn btn-primary">Add Property</a>
     <a asp-action="Index" class="btn btn-success">Back to List</a>
 </div>
 <br />
@@ -115,7 +115,7 @@ else
                     @Html.DisplayFor(modelItem => item.Contracts.Count)
                 </td>
                 <td>
-                    <a asp-action="EditProperties" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="EditProperty" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                     <a asp-action="DetailsProperties" asp-route-id="@item.Id" class="btn btn-info">Details</a>
                     <a asp-action="DeleteProperties" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>

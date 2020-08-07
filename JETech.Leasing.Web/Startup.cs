@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using JETech.Leasing.Web.Helpers;
 using JETech.Leasing.Web.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using MyLeasing.Web.Helpers;
 
 namespace JETech.Leasing.Web
 {
@@ -47,6 +48,8 @@ namespace JETech.Leasing.Web
 
             services.AddTransient<SeedDb>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
+            services.AddScoped<IConverterHelper, ConverterHelper>();
             services.AddControllersWithViews();            
         }
 

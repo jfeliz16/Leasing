@@ -10,6 +10,7 @@ using JETech.Leasing.Web.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using JETech.Leasing.Web.Helpers;
 using JETech.Leasing.Web.Models;
+using MyLeasing.Web.Helpers;
 
 namespace JETech.Leasing.Web.Controllers
 {
@@ -18,14 +19,20 @@ namespace JETech.Leasing.Web.Controllers
     {
         private readonly DataContext _dataContext;
         private readonly IUserHelper _userHelper;
+        private readonly ICombosHelper _combosHelper;
+        private readonly IConverterHelper _converterHelper;
 
         public OwnersController(
              DataContext dataContext,
-             IUserHelper userHelper
+             IUserHelper userHelper,
+             ICombosHelper combosHelper,
+             IConverterHelper converterHelper
            )
         {
             _dataContext = dataContext;
-            _userHelper = userHelper;                     
+            _userHelper = userHelper;
+            _combosHelper = combosHelper;
+            _converterHelper = converterHelper;
         }
 
         // GET: Owners
@@ -115,6 +122,81 @@ namespace JETech.Leasing.Web.Controllers
             }
 
             return null;
+        }
+
+        public async Task<IActionResult> AddProperty(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var owner = await _dataContext.Owners.FindAsync(id.Value);
+            if (owner == null)
+            {
+                return NotFound();
+            }
+
+            var view = new PropertyViewModel
+            {
+                OwnerId = owner.Id,
+                PropertyTypes = _combosHelper.GetComboPropertyTypes()
+            };
+
+            return View(view);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProperty(PropertyViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var property = await  _converterHelper.ToPropertyAsync(model,true);
+
+                _dataContext.Properties.Add(property);
+
+                await _dataContext.SaveChangesAsync();
+
+                //return RedirectToAction($"Details/{model.OwnerId}");
+                return RedirectToAction("Details", new { Id = model.OwnerId });
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> EditProperty(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var property = await _dataContext.Properties
+                .Include(p => p.Owner)
+                .Include(p => p.PropertyType)
+                .FirstOrDefaultAsync(p => p.Id == id.Value);
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            var view = _converterHelper.ToPropertyViewModel(property);
+            return View(view);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProperty(PropertyViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var property = await _converterHelper.ToPropertyAsync(model, false);
+                _dataContext.Properties.Update(property);
+                await _dataContext.SaveChangesAsync();
+
+                //return RedirectToAction($"Details/{model.OwnerId}");
+                return RedirectToAction("Details", new {Id = model.OwnerId });
+            }
+
+            return View(model);
         }
 
         // GET: Owners/Edit/5
