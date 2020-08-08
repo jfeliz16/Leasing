@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using JETech.Leasing.Web.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace JETech.Leasing.Web.Helpers
 {
@@ -16,12 +17,13 @@ namespace JETech.Leasing.Web.Helpers
 
         public IEnumerable<SelectListItem> GetComboLessees()
         {
-            var list = _dataContext.Lessees.Select(l => new SelectListItem
+            var list = _dataContext.Lessees             
+                .Select(l => new SelectListItem
             {
                 Text = l.User.FullNameWithDocument,
-                Value = $"{l.Id}"
-            })
-                .OrderBy(pt => pt.Text)
+                Value = l.Id.ToString()
+            })                
+                //.OrderBy( sl => sl.Text)
                 .ToList();
 
             list.Insert(0, new SelectListItem
@@ -29,6 +31,8 @@ namespace JETech.Leasing.Web.Helpers
                 Text = "(Select a lessee...)",
                 Value = "0"
             });
+
+            list.OrderBy(sl => sl.Text);
 
             return list;
         }
